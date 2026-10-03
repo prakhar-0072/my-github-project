@@ -1,6 +1,6 @@
-* ==============================
-   GENERAL STYLING
-   ============================== */
+/* =========================================
+   MODERN ANIMATED PORTFOLIO
+   ========================================= */
 
 * {
     margin: 0;
@@ -14,67 +14,194 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f6f8;
-    color: #333;
+    line-height: 1.7;
+    color: #1f2937;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc, #e0f2fe);
+    background-size: 300% 300%;
+    animation: backgroundMove 12s ease infinite;
 }
 
 
-/* ==============================
+/* =========================================
+   BACKGROUND ANIMATION
+   ========================================= */
+
+@keyframes backgroundMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================
    MAIN CONTAINER
-   ============================== */
+   ========================================= */
 
 body > div {
     width: 90%;
     max-width: 1100px;
-    margin: 30px auto;
-    background-color: white;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.12);
+
+    animation: containerAppear 1s ease;
+}
+
+@keyframes containerAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
-/* ==============================
+/* =========================================
    HEADER
-   ============================== */
+   ========================================= */
 
 body > div > div:first-child {
-    background-color: #1f2937;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #1e3a8a,
+        #2563eb
+    );
+
     color: white;
-    padding: 35px;
+    padding: 55px 30px;
     text-align: center;
 }
 
-h1 {
-    font-size: 42px;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+
+/* Animated circles */
+
+body > div > div:first-child::before,
+body > div > div:first-child::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: floatingCircle 6s ease-in-out infinite;
 }
+
+body > div > div:first-child::before {
+    width: 220px;
+    height: 220px;
+    background: white;
+    top: -100px;
+    left: -70px;
+}
+
+body > div > div:first-child::after {
+    width: 180px;
+    height: 180px;
+    background: #60a5fa;
+    bottom: -80px;
+    right: -50px;
+    animation-delay: 2s;
+}
+
+@keyframes floatingCircle {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(20deg);
+    }
+}
+
+
+/* =========================================
+   NAME
+   ========================================= */
+
+h1 {
+    position: relative;
+    z-index: 1;
+
+    font-size: 46px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+
+    animation: titleAppear 1.2s ease;
+}
+
+@keyframes titleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Header paragraphs */
 
 body > div > div:first-child p {
+    position: relative;
+    z-index: 1;
     margin: 8px 0;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
-/* ==============================
+/* =========================================
    LINKS
-   ============================== */
+   ========================================= */
 
 a {
     color: #2563eb;
     text-decoration: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 a:hover {
     color: #1d4ed8;
     text-decoration: underline;
+    transform: translateY(-2px);
 }
 
 
 /* Header links */
 
 body > div > div:first-child a {
-    color: #93c5fd;
+    color: #bfdbfe;
 }
 
 body > div > div:first-child a:hover {
@@ -82,9 +209,9 @@ body > div > div:first-child a:hover {
 }
 
 
-/* ==============================
-   PROFILE SECTION
-   ============================== */
+/* =========================================
+   PROFILE AREA
+   ========================================= */
 
 table {
     width: 100%;
@@ -92,69 +219,207 @@ table {
 }
 
 td {
-    padding: 30px;
+    padding: 35px;
     vertical-align: middle;
 }
 
 td:first-child {
-    width: 150px;
+    width: 180px;
     text-align: center;
 }
 
+
+/* =========================================
+   PROFILE PHOTO
+   ========================================= */
+
 td img {
-    width: 120px;
-    height: 120px;
+    width: 135px;
+    height: 135px;
+
     object-fit: cover;
+
     border-radius: 50%;
-    border: 4px solid #2563eb;
+
+    border: 5px solid #2563eb;
+
+    box-shadow:
+        0 0 0 8px rgba(37, 99, 235, 0.10),
+        0 10px 30px rgba(0, 0, 0, 0.15);
+
+    animation: profileFloat 4s ease-in-out infinite;
+
+    transition: all 0.4s ease;
+}
+
+@keyframes profileFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+td img:hover {
+    transform: scale(1.08) rotate(3deg);
+
+    box-shadow:
+        0 0 0 12px rgba(37, 99, 235, 0.12),
+        0 15px 35px rgba(0, 0, 0, 0.20);
 }
 
 
-/* ==============================
+/* =========================================
+   PROFILE DESCRIPTION
+   ========================================= */
+
+td p {
+    font-size: 17px;
+    color: #4b5563;
+}
+
+
+/* =========================================
    SECTIONS
-   ============================== */
+   ========================================= */
 
 section {
     margin: 25px 40px;
     padding: 30px;
-    background-color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.95);
+
     border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+
+    animation: sectionAppear 0.8s ease both;
 }
+
+section:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 35px rgba(37, 99, 235, 0.12);
+}
+
+@keyframes sectionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   HEADINGS
+   ========================================= */
 
 h2 {
-    color: #1f2937;
-    font-size: 28px;
-    margin-bottom: 18px;
-    padding-bottom: 8px;
+    color: #111827;
+
+    font-size: 29px;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 10px;
+
     border-bottom: 3px solid #2563eb;
+
+    position: relative;
 }
+
+h2::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -3px;
+
+    width: 70px;
+    height: 3px;
+
+    background: #60a5fa;
+
+    animation: lineGrow 1s ease;
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 70px;
+    }
+}
+
 
 h3 {
-    color: #374151;
-    font-size: 20px;
-    margin-top: 20px;
+    color: #1e3a8a;
+
+    font-size: 21px;
+
+    margin-top: 22px;
     margin-bottom: 8px;
+
+    transition: color 0.3s ease;
+}
+
+h3:hover {
+    color: #2563eb;
 }
 
 
-/* ==============================
+/* =========================================
    LISTS
-   ============================== */
+   ========================================= */
 
 ul {
     margin-left: 25px;
 }
 
 li {
-    margin-bottom: 8px;
+    margin-bottom: 9px;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+li:hover {
+    transform: translateX(8px);
+    color: #2563eb;
 }
 
 
-/* ==============================
+/* =========================================
+   SKILLS
+   ========================================= */
+
+section ul li {
+    position: relative;
+}
+
+
+/* =========================================
    PROJECTS
-   ============================== */
+   ========================================= */
 
 section p {
     margin-bottom: 12px;
@@ -165,15 +430,31 @@ section a {
 }
 
 
-/* ==============================
+/* Project links */
+
+section a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
    FOOTER
-   ============================== */
+   ========================================= */
 
 footer {
-    background-color: #1f2937;
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #1e3a8a,
+        #2563eb
+    );
+
     color: white;
+
     text-align: center;
-    padding: 20px;
+
+    padding: 25px;
+
     margin-top: 30px;
 }
 
@@ -182,23 +463,48 @@ footer p {
 }
 
 
-/* ==============================
-   MOBILE RESPONSIVE DESIGN
-   ============================== */
+/* =========================================
+   FOOTER ANIMATION
+   ========================================= */
+
+footer:hover {
+    background-size: 200% 200%;
+    animation: footerGlow 4s ease infinite;
+}
+
+@keyframes footerGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
 
 @media (max-width: 768px) {
 
     body > div {
         width: 95%;
-        margin: 10px auto;
+        margin: 15px auto;
+        border-radius: 14px;
     }
 
     body > div > div:first-child {
-        padding: 25px 15px;
+        padding: 40px 20px;
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
     table,
@@ -210,26 +516,35 @@ footer p {
     }
 
     td {
-        padding: 15px 20px;
+        padding: 20px;
         text-align: center;
     }
 
+    td:first-child {
+        width: 100%;
+    }
+
     td img {
-        width: 110px;
-        height: 110px;
+        width: 120px;
+        height: 120px;
+    }
+
+    td p {
+        font-size: 15px;
+        text-align: left;
     }
 
     section {
         margin: 15px;
-        padding: 20px;
+        padding: 22px;
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 25px;
     }
 
     h3 {
-        font-size: 18px;
+        font-size: 19px;
     }
 
     body > div > div:first-child p {
@@ -237,4 +552,19 @@ footer p {
         word-break: break-word;
     }
 }
-```
+
+
+/* =========================================
+   REDUCE ANIMATION FOR ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
