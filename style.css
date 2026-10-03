@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Main container */
+body > div {
+    max-width: 1000px;
+    margin: auto;
+    background-color: white;
+}
+
+/* Name and contact information */
+h1 {
+    background-color: #333;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+body > div > div:first-child {
+    padding-bottom: 20px;
+}
+
+body > div > div:first-child p {
+    margin: 8px 30px;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Profile section */
+table {
+    width: 100%;
+    padding: 20px;
+}
+
+td {
+    padding: 15px;
+    vertical-align: top;
+}
+
+td img {
+    border-radius: 50%;
+    border: 3px solid #333;
+}
+
+/* Sections */
+section {
+    padding: 30px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+ul {
+    margin-left: 25px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
