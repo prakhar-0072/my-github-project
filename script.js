@@ -11,7 +11,6 @@ window.addEventListener("load", function () {
 // ==========================================
 // DARK / LIGHT MODE
 // ==========================================
-
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 
@@ -24,6 +23,13 @@ function toggleDarkMode() {
     }
 }
 
+window.addEventListener("load", function () {
+    const themeButton = document.getElementById("themeButton");
+
+    if (themeButton) {
+        themeButton.addEventListener("click", toggleDarkMode);
+    }
+});
 
 // ==========================================
 // SHOW / HIDE PROJECTS
