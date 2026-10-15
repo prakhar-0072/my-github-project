@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <title>Weather App</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: lightblue;
+            margin-top: 50px;
+        }
+
+        .box {
+            background-color: white;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1>Weather App</h1>
+
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getWeather()">Check Weather</button>
+
+        <p id="result">Enter a city to check its weather.</p>
+    </div>
+
+    <script>
+        async function getWeather() {
+            var city = document.getElementById("city").value;
+            var result = document.getElementById("result");
+
+            if (city == "") {
+                result.innerHTML = "Please enter a city name.";
+                return;
+            }
+
+            result.innerHTML = "Loading...";
+
+            try {
+                var url = "https://wttr.in/" + encodeURIComponent(city) + "?format=j1";
+                var response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("Weather not found");
+                }
+
+                var data = await response.json();
+                var weather = data.current_condition[0];
+
+                result.innerHTML =
+                    "City: " + city + "<br>" +
+                    "Temperature: " + weather.temp_C + " °C<br>" +
+                    "Weather: " + weather.weatherDesc[0].value + "<br>" +
+                    "Humidity: " + weather.humidity + "%";
+
+            } catch (error) {
+                result.innerHTML = "Unable to get weather. Try again.";
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>
